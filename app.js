@@ -12,6 +12,8 @@ const pool = require('./db/pool');
 const indexRouter = require('./routes/indexRouter');
 const registerRouter = require('./routes/registerRouter');
 const loginRouter = require('./routes/loginRouter');
+const logoutRouter = require('./routes/logoutRouter');
+const membersRouter = require('./routes/membersRouter');
 
 if (process.env.NODE_ENV !== 'production') {
   dotenv.config();
@@ -56,13 +58,17 @@ app.use(passport.session());
 
 app.use((req, res, next) => {
   res.locals.loggedIn = req.isAuthenticated();
+  res.locals.isMember = req.user?.is_member ?? false;
   res.locals.user = req.user;
+
   next();
 });
 
 app.use('/', indexRouter);
 app.use('/register', registerRouter);
 app.use('/log-in', loginRouter);
+app.use('/log-out', logoutRouter);
+app.use('/members', membersRouter);
 
 app.use((req, res) => {
   res.status(404).render('404', { title: 'Page Not Found' });

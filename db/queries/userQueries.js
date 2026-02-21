@@ -25,11 +25,11 @@ async function isUsernameTaken(username) {
   }
 }
 
-async function addUser({ username, full_name, email, hash, salt }) {
+async function addUser({ username, full_name, email, hash, salt, isMember }) {
   try {
     await pool.query(
-      'INSERT INTO users (username, full_name, email, password_hash, password_salt) VALUES ($1, $2, $3, $4, $5)',
-      [username, full_name, email, hash, salt]
+      'INSERT INTO users (username, full_name, email, password_hash, password_salt, is_member) VALUES ($1, $2, $3, $4, $5, $6)',
+      [username, full_name, email, hash, salt, isMember]
     );
   } catch (error) {
     console.error('Error adding user to database:', error);
@@ -58,7 +58,8 @@ async function getUserById({ userId }) {
 
     return rows[0];
   } catch (error) {
-    console.log('Error database:');
+    console.log('Error database:', error);
+    throw error;
   }
 }
 
