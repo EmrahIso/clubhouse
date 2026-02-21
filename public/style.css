@@ -1,0 +1,218 @@
+.highlight-login-link-red {
+  color: #e53935;
+  background: none;
+  border-radius: 0.4rem;
+  font-weight: 700;
+  text-decoration: underline;
+  font-size: 1.1rem;
+  transition: color 0.2s;
+  border: none;
+}
+
+/* === HIGHLIGHT LOGIN MESSAGE === */
+.highlight-login-message {
+  background: #ffe082;
+  border: 2px solid #ffb300;
+  border-radius: 0.7rem;
+  padding: 1.1rem 0.7rem;
+  margin-bottom: 1.7rem;
+  text-align: center;
+  box-shadow: 0 2px 12px rgba(255, 193, 7, 0.08);
+}
+
+.highlight-login-text {
+  color: #ff6f00;
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  margin-right: 0.7rem;
+  text-transform: uppercase;
+}
+
+.highlight-login-link {
+  color: #fff;
+  background: #ff6f00;
+  padding: 0.4rem 1.1rem;
+  border-radius: 0.4rem;
+  font-weight: 700;
+  text-decoration: none;
+  font-size: 1.1rem;
+  transition:
+    background 0.2s,
+    color 0.2s;
+}
+.highlight-login-link:hover {
+  background: #fff3e0;
+  color: #ff6f00;
+  border: 1.5px solid #ff6f00;
+}
+/* === ERROR MESSAGES === */
+.error-message {
+  color: #e53935;
+  margin-top: 0.4rem;
+  font-size: 0.97rem;
+}
+/* === GLOBAL RESETS === */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #fff;
+  color: #111;
+  font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+  min-height: 100vh;
+}
+
+.centered {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* === FORM === */
+.form-container {
+  background: #fff;
+  border: 1.5px solid #111;
+  border-radius: 1.2rem;
+  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.06);
+  max-width: 400px;
+  width: 100%;
+  padding: 2.5rem 2rem;
+}
+
+.form-container h2 {
+  color: #111;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  letter-spacing: 1px;
+}
+
+.modern-form .form-group {
+  margin-bottom: 1.2rem;
+}
+
+.modern-form label {
+  display: block;
+  margin-bottom: 0.4rem;
+  color: #111;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.modern-form input[type='text'],
+.modern-form input[type='email'],
+.modern-form input[type='password'] {
+  width: 100%;
+  padding: 0.7rem 1rem;
+  border: 1.5px solid #111;
+  border-radius: 0.5rem;
+  background: #fff;
+  color: #111;
+  font-size: 1rem;
+  transition:
+    border 0.2s,
+    box-shadow 0.2s;
+}
+
+.modern-form input:focus {
+  border-color: #111;
+  outline: none;
+  background: #fff;
+  box-shadow: 0 0 0 2px #1112;
+}
+
+.btn {
+  display: inline-block;
+  background: #111;
+  color: #fff;
+  border: 1.5px solid #111;
+  padding: 0.75rem 2rem;
+  border-radius: 0.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    color 0.2s,
+    border 0.2s;
+  margin-top: 1rem;
+  letter-spacing: 0.5px;
+}
+
+.btn:hover {
+  background: #fff;
+  color: #111;
+}
+
+.btn-header {
+  display: inline-block;
+  background: #111;
+  color: #fff;
+  border: 1.5px solid #111;
+  padding: 0.5rem 1.25rem;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    color 0.2s,
+    border 0.2s;
+  margin-top: 1rem;
+  letter-spacing: 0.5px;
+}
+
+.btn-header:hover {
+  background: #fff;
+  color: #111;
+}
+
+/* === ERROR PAGES === */
+body.error-page {
+  background: #fff;
+}
+
+.error-container {
+  background: #fff;
+  border: 1.5px solid #111;
+  border-radius: 1.2rem;
+  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.06);
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+  padding: 2.5rem 2rem;
+}
+
+.error-container h1 {
+  font-size: 4rem;
+  color: #111;
+  margin-bottom: 0.5rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.error-container h2 {
+  font-size: 1.5rem;
+  color: #111;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.error-container p {
+  color: #111;
+  margin-bottom: 1.5rem;
+}
+
+.index-login:link,
+.index-login:visited {
+  color: #e53935;
+}
+
+.global-error-message {
+  margin-bottom: 8px;
+}

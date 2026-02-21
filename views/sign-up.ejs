@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ClubHouse | <%= title %></title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body class="centered">
+    <div class="form-container">
+      <div class="highlight-login-message">
+        <span class="highlight-login-text">Already have an account?</span>
+        <a href="/log-in" class="highlight-login-link-red">Log in here</a>
+      </div>
+      <h2>Register</h2>
+      <form action="/register" method="POST" class="modern-form">
+        <div class="form-group">
+          <label for="username">Username (*)</label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            minlength="3"
+            maxlength="40"
+            required
+            autocomplete="username"
+          />
+          <% if (errors && Array.isArray(errors)) { %>
+            <% errors.filter(e => e.path === 'username').forEach(e => { %>
+              <div class="error-message"><%= e.msg %></div>
+            <% }) %>
+          <% } %>
+        </div>
+        <div class="form-group">
+          <label for="full_name">Full Name (*)</label>
+          <input
+            type="text"
+            id="full_name"
+            name="full_name"
+            required
+            autocomplete="name"
+          />
+          <% if (errors && Array.isArray(errors)) { %>
+            <% errors.filter(e => e.path === 'full_name').forEach(e => { %>
+              <div class="error-message"><%= e.msg %></div>
+            <% }) %>
+          <% } %>
+        </div>
+        <div class="form-group">
+          <label for="email">Email (*)</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            required
+            autocomplete="email"
+          />
+          <% if (errors && Array.isArray(errors)) { %>
+            <% errors.filter(e => e.path === 'email').forEach(e => { %>
+              <div class="error-message"><%= e.msg %></div>
+            <% }) %>
+          <% } %>
+        </div>
+        <div class="form-group">
+          <label for="password">Password (*)</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            minlength="6"
+            required
+            autocomplete="new-password"
+          />
+          <% if (errors && Array.isArray(errors)) { %>
+            <% errors.filter(e => e.path === 'password').forEach(e => { %>
+              <div class="error-message"><%= e.msg %></div>
+            <% }) %>
+          <% } %>
+        </div>
+        <div class="form-group">
+          <label for="confirmPassword">Confirm Password (*)</label>
+          <input
+            type="password"
+            id="confirmPassword"
+            name="confirmPassword"
+            minlength="6"
+            required
+            autocomplete="new-password"
+          />
+          <% if (errors && Array.isArray(errors)) { %>
+            <% errors.filter(e => e.path === 'confirmPassword').forEach(e => { %>
+              <div class="error-message"><%= e.msg %></div>
+            <% }) %>
+          <% } %>
+        </div>
+        <button type="submit" class="btn">Sign Up</button>
+      </form>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/style.css" />
+    <title>Members Area</title>
+  </head>
+  <body>
+    <div class="form-container" style="margin: 2rem auto; max-width: 400px; text-align: center;">
+      <h2>Members Area</h2>
+      <% if (!isMember) { %>
+        <form action="/members" method="POST" class="modern-form">
+          <div class="form-group">
+            <label for="passcode">Enter Passcode:</label>
+            <input type="text" id="passcode" name="passcode" required />
+          </div>
+          <button type="submit" class="btn">Submit</button>
+        </form>
+      <% } else { %>
+        <form action="/members/leave" method="POST" class="modern-form">
+          <button type="submit" class="btn btn-danger">Leave Membership</button>
+        </form>
+      <% } %>
+      <div style="margin-top: 1rem;">
+        <a href="/">Back to Home</a>
+      </div>
+    </div>
+  </body>
+</html>
