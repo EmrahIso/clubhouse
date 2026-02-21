@@ -2,8 +2,6 @@ const { Router } = require('express');
 const loginController = require('../controllers/loginController');
 const loginValidator = require('../validators/loginValidator');
 
-const passport = require('passport');
-
 const loginRouter = Router();
 
 loginRouter.get('/', loginController.getLoginUser);

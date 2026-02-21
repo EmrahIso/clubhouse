@@ -9,9 +9,15 @@
   <body>
     <div class="form-container" style="margin: 2rem auto; max-width: 400px; text-align: center;">
       <h2>Members Area</h2>
+      <% if (errors && Array.isArray(errors) && errors.length > 0) { %>
+        <% errors.forEach(e => { %>
+          <div class="error-message global-error-message"><%= e.msg %></div>
+        <% }) %>
+      <% } %>
       <% if (!isMember) { %>
-        <form action="/members" method="POST" class="modern-form">
+        <form action="/members/join" method="POST" class="modern-form">
           <div class="form-group">
+            <h3 style="margin-bottom: 5px;">Become a member!</h3>
             <label for="passcode">Enter Passcode:</label>
             <input type="text" id="passcode" name="passcode" required />
           </div>

@@ -18,8 +18,9 @@ module.exports.postRegisterUser = async (req, res) => {
     username = username.trim();
 
     const { hash, salt } = await generatePassword(password);
+    const isMember = false; // By default all users are not members.
 
-    await addUser({ username, full_name, email, hash, salt });
+    await addUser({ username, full_name, email, hash, salt, isMember });
   } catch (error) {
     if (error.code === '23505') {
       return res

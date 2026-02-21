@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/style.css" />
+    <title>Log Out</title>
+  </head>
+  <body>
+    <div
+      class="form-container"
+      style="margin: 2rem auto; max-width: 400px; text-align: center"
+    >
+      <h2>Log Out</h2>
+      <div class="logout-warning" style="color: #b22222; margin-bottom: 1rem">
+        <strong>Warning:</strong> You are about to log out. This will end your
+        session and you will need to log in again to access member features.
+      </div>
+      <form action="/log-out" method="POST">
+        <button type="submit" class="btn btn-danger">Confirm Log Out</button>
+      </form>
+      <div style="margin-top: 1rem">
+        <a href="/">Back to Home</a>
+      </div>
+    </div>
+  </body>
+</html>
