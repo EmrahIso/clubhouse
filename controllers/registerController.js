@@ -21,6 +21,8 @@ module.exports.postRegisterUser = async (req, res) => {
     const isMember = false; // By default all users are not members.
 
     await addUser({ username, full_name, email, hash, salt, isMember });
+
+    return res.redirect('/log-in');
   } catch (error) {
     if (error.code === '23505') {
       return res
@@ -33,8 +35,6 @@ module.exports.postRegisterUser = async (req, res) => {
       .status(500)
       .json('An error occurred while registering. Please try again.');
   }
-
-  res.redirect('/log-in');
 };
 
 module.exports.getRegisterUser = (req, res) => {

@@ -6,16 +6,16 @@ module.exports.getMembers = (req, res) => {
 };
 
 module.exports.postJoinMembers = async (req, res) => {
+  const errors = validationResult(req);
+
+  if (!errors.isEmpty()) {
+    return res.status(400).render('members', {
+      title: 'Members Area',
+      errors: errors.array(),
+    });
+  }
+
   try {
-    const errors = validationResult(req);
-
-    if (!errors.isEmpty()) {
-      return res.status(400).render('members', {
-        title: 'Members Area',
-        errors: errors.array(),
-      });
-    }
-
     const passcode = req.body.passcode;
 
     if (passcode === process.env.MEMBER_PASSWORD) {
@@ -33,7 +33,7 @@ module.exports.postJoinMembers = async (req, res) => {
       });
     }
   } catch (error) {
-    console.error('Unexpected error in login controller:', error);
+    console.error('Unexpected error:', error);
     return res.status(500).send('Something went wrong on our end!');
   }
 };
@@ -44,7 +44,7 @@ module.exports.postLeaveMembers = async (req, res) => {
 
     return res.status(201).redirect('/');
   } catch (error) {
-    console.error('Unexpected error in login controller:', error);
+    console.error('Unexpected error:', error);
     return res.status(500).send('Something went wrong on our end!');
   }
 };

@@ -1,10 +1,9 @@
 const { Router } = require('express');
+const indexController = require('../controllers/indexController');
+const pageParamValidator = require('../validators/pageParamValidator');
+
 const indexRouter = Router();
 
-indexRouter.get('/', (req, res) => {
-  res.render('index', {
-    title: 'Home',
-  });
-});
+indexRouter.get('/', pageParamValidator, indexController.getIndex);
 
 module.exports = indexRouter;

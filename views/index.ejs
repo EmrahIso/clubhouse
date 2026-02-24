@@ -7,13 +7,15 @@
     <title>ClubHouse | <%= title %></title>
   </head>
   <body>
-    <% console.log('loggedIn:', loggedIn); %>
     <% if (loggedIn) { %>
       <div class="form-container" style="margin: 2rem auto; max-width: 600px;">
         <h2>Welcome to ClubHouse!</h2>
         <div style="display: flex; justify-content: space-between;">
           <a href="/members" class="btn-header" style="margin-right: 0.5rem;">Members Area</a>
           <a href="/log-out" class="btn-header btn-logout">Logout</a>
+        </div>
+        <div style="margin-top: 2rem; text-align: center;">
+          <a href="/posts/new" class="btn btn-green">Create New Message</a>
         </div>
       </div>
     <% } else { %>
@@ -24,6 +26,55 @@
           <div style="margin-top: 1rem;">
             <small>If you already have an account, <a href="/log-in" class="index-login">you can log in here</a>.</small>
           </div>
+      </div>
+    <% } %>
+
+    <% if (typeof totalPages !== 'undefined' && totalPages > 1) { %>
+      <div style="display: flex; justify-content: center; margin: 2rem 0 1rem 0;">
+        <nav aria-label="Pagination">
+          <ul style="display: flex; gap: 0.5rem; list-style: none; padding: 0; margin: 0;">
+            <% for (let i = 1; i <= totalPages; i++) { %>
+              <li>
+                <a href="/?page=<%= i %>"
+                  class="page-link <%= i === currentPage ? 'active' : '' %>"
+                  <%= i === currentPage ? 'aria-current="page"' : '' %>
+                >
+                  <%= i %>
+                </a>
+              </li>
+            <% } %>
+          </ul>
+        </nav>
+      </div>
+    <% } %>
+
+    <% if (posts && posts.length > 0) { %>
+      <div class="form-container" style="margin: 2rem auto; max-width: 600px;">
+        <h3 style="margin-bottom: 2.5rem;">Recent Posts</h3>
+        <ul style="list-style: none; padding: 0;">
+          <% posts.forEach((post) => { %>
+            <li style="border-bottom: 1px solid #eee; margin-bottom: 1.2rem; padding-bottom: 1.2rem;">
+              <div style="font-weight: bold; font-size: 1.1rem; margin-bottom: 0.3rem;">
+                <%= post.title %>
+              </div>
+              <div style="margin-bottom: 0.5rem; color: #444;">
+                <%= post.content %>
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.9rem; color: #888;">
+                <span>Posted on <%= new Date(post.created_at).toLocaleString() %></span>
+                <% if (isMember && post.username) { %>
+                  <span style="color: #e53935; margin-left: 1rem; white-space: nowrap;">by <%= post.username %></span>
+                <% } else { %>
+                  <span style="color: #e53935; margin-left: 1rem; white-space: nowrap;">by anonymous</span>
+                <% } %>
+              </div>
+            </li>
+          <% }) %>
+        </ul>
+      </div>
+    <% } else { %>
+      <div class="form-container" style="margin: 2rem auto; max-width: 600px; text-align: center;">
+        <p style="color: #888;">No posts yet.</p>
       </div>
     <% } %>
   </body>

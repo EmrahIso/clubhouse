@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" href="/required-asterisk.css" />
     <title>Members Area</title>
   </head>
   <body>
@@ -18,8 +19,8 @@
         <form action="/members/join" method="POST" class="modern-form">
           <div class="form-group">
             <h3 style="margin-bottom: 5px;">Become a member!</h3>
-            <label for="passcode">Enter Passcode:</label>
-            <input type="text" id="passcode" name="passcode" required />
+            <label for="passcode">Enter Passcode <span class="required-asterisk">(*)</span>:</label>
+            <input type="password" id="passcode" name="passcode" required autocomplete="off"/>
           </div>
           <button type="submit" class="btn">Submit</button>
         </form>

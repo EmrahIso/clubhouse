@@ -6,15 +6,15 @@ module.exports.getLoginUser = (req, res) => {
 };
 
 module.exports.postLoginUser = (req, res, next) => {
+  const errors = validationResult(req);
+
+  if (!errors.isEmpty()) {
+    return res
+      .status(400)
+      .render('log-in', { title: 'Log In', errors: errors.array() });
+  }
+
   try {
-    const errors = validationResult(req);
-
-    if (!errors.isEmpty()) {
-      return res
-        .status(400)
-        .render('log-in', { title: 'Log In', errors: errors.array() });
-    }
-
     passport.authenticate('local', function (err, user, info) {
       if (err) {
         return next(err);

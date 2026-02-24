@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ClubHouse | <%= title %></title>
     <link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" href="/required-asterisk.css" />
   </head>
   <body class="centered">
     <div class="form-container">
@@ -20,7 +21,7 @@
                   <% }) %>
                 <% } %>
         <div class="form-group">
-          <label for="email">Email:</label>
+          <label for="email">Email <span class="required-asterisk">(*)</span>:</label>
           <input
             type="email"
             id="email"
@@ -37,7 +38,7 @@
           <% } %>
         </div>
         <div class="form-group">
-          <label for="password">Password:</label>
+          <label for="password">Password <span class="required-asterisk">(*)</span>:</label>
           <input
             type="password"
             id="password"

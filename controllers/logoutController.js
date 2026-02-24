@@ -15,7 +15,7 @@ module.exports.postLogoutUser = (req, res, next) => {
       });
     });
   } catch (error) {
-    console.error('Unexpected error in login controller:', error);
+    console.error('Unexpected error:', error);
     return res.status(500).send('Something went wrong on our end!');
   }
 };
