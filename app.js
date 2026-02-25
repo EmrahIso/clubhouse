@@ -15,6 +15,7 @@ const loginRouter = require('./routes/loginRouter');
 const logoutRouter = require('./routes/logoutRouter');
 const membersRouter = require('./routes/membersRouter');
 const postsRouter = require('./routes/postsRouter');
+const adminRouter = require('./routes/adminRouter');
 
 if (process.env.NODE_ENV !== 'production') {
   dotenv.config();
@@ -60,6 +61,7 @@ app.use(passport.session());
 app.use((req, res, next) => {
   res.locals.loggedIn = req.isAuthenticated();
   res.locals.isMember = req.user?.is_member ?? false;
+  res.locals.isAdmin = req.user?.is_admin ?? false;
   res.locals.user = req.user;
 
   next();
@@ -71,6 +73,7 @@ app.use('/log-in', loginRouter);
 app.use('/log-out', logoutRouter);
 app.use('/members', membersRouter);
 app.use('/posts', postsRouter);
+app.use('/admin', adminRouter);
 
 app.use((req, res) => {
   res.status(404).render('404', { title: 'Page Not Found' });

@@ -10,8 +10,11 @@
     <% if (loggedIn) { %>
       <div class="form-container" style="margin: 2rem auto; max-width: 600px;">
         <h2>Welcome to ClubHouse!</h2>
-        <div style="display: flex; justify-content: space-between;">
-          <a href="/members" class="btn-header" style="margin-right: 0.5rem;">Members Area</a>
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <div>
+            <a href="/members" class="btn-header" style="margin-right: 0.5rem;">Members Area</a>
+            <a href="/admin" class="btn-header" style="margin-right: 0.5rem;">Become an admin</a>
+          </div>
           <a href="/log-out" class="btn-header btn-logout">Logout</a>
         </div>
         <div style="margin-top: 2rem; text-align: center;">

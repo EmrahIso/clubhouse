@@ -16,7 +16,7 @@ module.exports.postJoinMembers = async (req, res) => {
   }
 
   try {
-    const passcode = req.body.passcode;
+    const passcode = req.body.members_passcode;
 
     if (passcode === process.env.MEMBER_PASSWORD) {
       await updateMemberStatus({ userId: req.user.id, newValue: true });
