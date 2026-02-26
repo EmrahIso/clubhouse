@@ -1,8 +1,7 @@
 const { Client } = require('pg');
-const dotenv = require('dotenv');
 
 if (process.env.NODE_ENV !== 'production') {
-  dotenv.config();
+  require('dotenv').config();
 }
 
 const SQL_INIT = `
@@ -44,6 +43,7 @@ CREATE INDEX IF NOT EXISTS idx_posts_created_at ON posts(created_at DESC);
 async function initDB() {
   const client = new Client({
     connectionString: process.env.DATABASE_URL,
+    ssl: { rejectUnauthorized: false },
   });
 
   try {
