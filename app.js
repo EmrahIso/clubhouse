@@ -16,6 +16,7 @@ const logoutRouter = require('./routes/logoutRouter');
 const membersRouter = require('./routes/membersRouter');
 const postsRouter = require('./routes/postsRouter');
 const adminRouter = require('./routes/adminRouter');
+const initDB = require('./db/initDB');
 
 if (process.env.NODE_ENV !== 'production') {
   dotenv.config();
@@ -84,6 +85,15 @@ app.use((err, req, res) => {
   res.status(500).render('500', { title: 'Server Error' });
 });
 
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+(async () => {
+  try {
+    await initDB();
+
+    app.listen(PORT, () => {
+      console.log(`Server is running on port ${PORT}`);
+    });
+  } catch (error) {
+    console.error('❌ DB initialization failed:', err);
+    process.exit(1);
+  }
+})();

@@ -5,11 +5,16 @@ if (process.env.NODE_ENV !== 'production') {
   dotenv.config();
 }
 
-const client = new Client({
-  connectionString: process.env.DATABASE_URL,
-});
-
 const SQL_INIT = `
+CREATE TABLE "session" (
+  "sid" varchar NOT NULL COLLATE "default",
+  "sess" json NOT NULL,
+  "expire" timestamp(6) NOT NULL
+)
+WITH (OIDS=FALSE);
+
+ALTER TABLE "session" ADD CONSTRAINT "session_pkey" PRIMARY KEY ("sid") NOT DEFERRABLE INITIALLY IMMEDIATE;
+
 CREATE TABLE IF NOT EXISTS users (
   id BIGINT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
   username VARCHAR(255) NOT NULL UNIQUE,
@@ -31,11 +36,16 @@ CREATE TABLE IF NOT EXISTS posts (
   FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
+CREATE INDEX "IDX_session_expire" ON "session" ("expire");
 CREATE INDEX IF NOT EXISTS idx_posts_user_id ON posts(user_id);
 CREATE INDEX IF NOT EXISTS idx_posts_created_at ON posts(created_at DESC);
 `;
 
 async function initDB() {
+  const client = new Client({
+    connectionString: process.env.DATABASE_URL,
+  });
+
   try {
     await client.connect();
 
@@ -48,4 +58,4 @@ async function initDB() {
   }
 }
 
-initDB();
+module.exports = initDB;
