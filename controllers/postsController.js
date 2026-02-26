@@ -1,5 +1,5 @@
 const { validationResult } = require('express-validator');
-const { addNewPost, getAllPostsCount } = require('../db/queries/postsQueries');
+const { addNewPost, deletePost } = require('../db/queries/postsQueries');
 
 module.exports.getNewPost = (req, res) => {
   res.render('new-post', {
@@ -29,5 +29,24 @@ module.exports.postNewPost = async (req, res) => {
     return res
       .status(500)
       .json('An error occurred while registering. Please try again.');
+  }
+};
+
+module.exports.getDeletePost = async (req, res) => {
+  const errors = validationResult(req);
+
+  if (!errors.isEmpty()) {
+    return res.status(400).json(errors.array()[0].msg);
+  }
+
+  try {
+    const postId = req.query.post_id;
+
+    await deletePost({ postId });
+
+    res.status(201).redirect('/');
+  } catch (error) {
+    console.error('Unexpected error:', error);
+    return res.status(500).send('Something went wrong on our end!');
   }
 };

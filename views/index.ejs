@@ -59,13 +59,16 @@
             <li style="border-bottom: 1px solid #eee; margin-bottom: 1.2rem; padding-bottom: 1.2rem;">
               <div style="font-weight: bold; font-size: 1.1rem; margin-bottom: 0.3rem;">
                 <%= post.title %>
+                <% if(isAdmin)  { %>
+                    <a href="/posts/delete/?post_id=<%= post.id %>" type="submit" style="font-size: 16px; margin-left: 10px; color: white; padding: 6px 12px; border-radius: 5px;" class="delete-btn">Delete</a>
+                <% } %> 
               </div>
               <div style="margin-bottom: 0.5rem; color: #444;">
                 <%= post.content %>
               </div>
               <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.9rem; color: #888;">
                 <span>Posted on <%= new Date(post.created_at).toLocaleString() %></span>
-                <% if (isMember && post.username) { %>
+                <% if (isMember && post.username || isAdmin && post.username) { %>
                   <span style="color: #e53935; margin-left: 1rem; white-space: nowrap;">by <%= post.username %></span>
                 <% } else { %>
                   <span style="color: #e53935; margin-left: 1rem; white-space: nowrap;">by anonymous</span>

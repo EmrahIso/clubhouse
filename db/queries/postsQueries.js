@@ -12,6 +12,15 @@ async function addNewPost({ userId, title, content }) {
   }
 }
 
+async function deletePost({ postId }) {
+  try {
+    await pool.query('DELETE FROM posts WHERE id = $1', [postId]);
+  } catch (error) {
+    console.log('Error database:', error);
+    throw error;
+  }
+}
+
 async function getAllPostsCount() {
   try {
     const { rows } = await pool.query('SELECT COUNT(*) FROM posts');
@@ -52,6 +61,7 @@ async function getAllPostsPagination({ limit, offset }) {
 
 module.exports = {
   addNewPost,
+  deletePost,
   getAllPostsCount,
   getAllPosts,
   getAllPostsPagination,

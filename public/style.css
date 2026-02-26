@@ -248,3 +248,7 @@ body.error-page {
   color: #fff;
   font-weight: bold;
 }
+
+.delete-btn {
+  background-color: #e74c3c !important;
+}
